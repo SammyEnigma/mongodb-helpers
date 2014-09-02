@@ -47,7 +47,7 @@ namespace Export_SQL2Mongo
 
             SqlDataReader reader = cmd.ExecuteReader();
 
-            // Read through the SQL Server data and put the columns into the MailLog object
+            // Read through the SQL Server data and put the columns into the Log object
             while (reader.Read())
             {
 
