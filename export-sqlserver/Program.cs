@@ -37,7 +37,8 @@ namespace Export_SQL2Mongo
 
             //Here we are creating the mongodb connection string and opening the connection
             //To create multiple servers use mongodb://server1:port, server2:port, server3:port
-            var mongoConnectionString = "mongodb://mongodbhostnameoripaddress";
+            //You must use the DNS name that the replica is usin gin rs.conf()  Otherwise you will run into sporadic No Such Host errors.
+            var mongoConnectionString = "mongodb://mongodbhostname";
             var client = new MongoClient(mongoConnectionString);
             var server = client.GetServer();
             var database = server.GetDatabase("yourmongodbdatabasename");
@@ -62,8 +63,6 @@ namespace Export_SQL2Mongo
 
                 //Insert the above defined object into the 
                 collection.Insert(logEntryObj);
-                //Calling disconnect manually during the loop to avoid an error about too many connections
-                server.Disconnect();
             }
 
             // Call Close when done reading.
